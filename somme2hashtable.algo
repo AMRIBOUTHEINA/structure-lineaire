@@ -1,0 +1,40 @@
+ALGORITHM Sum of similare elements
+VAR
+    set1: ARRAY_OF INTEGER[N];
+    set2: ARRAY_OF INTEGER[M];
+    tab : HASH_TABLE<INTEGER,INTEGER>;
+    count :INTEGER:=1;
+    i,J,M,N,k: INTEGER;
+    sum : INTEGER:=0;
+    index : array of INTEGER;
+
+BEGIN
+    FOR i FROM 0 TO N-1 STEP 1  DO
+      Read(set1[i]) 
+    END_FOR
+    FOR j FROM 0 TO M-1 STEP 1  DO
+      Read(set2[j]) 
+    END_FOR
+
+    FOR i FROM 0 TO N-1 STEP 1  DO
+      tab.insert(set1[i],1);
+      index.push(set1[i]); 
+      END_FOR
+
+    FOR j FROM 0 TO M-1 STEP 1  DO
+       IF (tab.lookup(set2[j]) = TRUE) THEN
+       count := tab.get(set1[i]);
+       tab.insert(set1[i],count+1);
+       ELSE
+       tab.insert(set2[j],1);
+       index.push(set2[j]);   
+       END_IF
+    END_FOR
+
+    FOR k in index  STEP 1  DO
+       IF (tab.get(index[k]<>1)) THEN
+       sum:=sum+index[k];
+       END_IF
+    END_FOR
+    Read(sum)
+END
